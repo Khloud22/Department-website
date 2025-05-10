@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض فيديوهات Clipchamp | إبداعات مرئية احترافية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* المتغيرات والأساسيات */
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #00cec9;
+            --accent-color: #FFE66D;
+            --dark-color: #292F36;
+            --light-color: #F7FFF7;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 span {
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #8c7ae6, #00b894);
+        }
+
+        /* شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-decoration: none;
+            color: var(--dark-color);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            margin-right: 25px;
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 700;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--dark-color);
+            margin: 5px 0;
+            transition: var(--transition);
+        }
+
+        /* القسم الرئيسي */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: white;
+            text-align: right;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23F7FFF7" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23F7FFF7" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23F7FFF7"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        /* معرض الفيديوهات */
+        .video-section {
+            background-color: var(--light-color);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            margin: 0 10px 10px 0;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .video-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .video-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            padding-top: 56.25%; /* نسبة 16:9 */
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .video-item:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .video-item:hover .play-icon {
+            opacity: 1;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .video-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-align: right;
+        }
+
+        .video-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        /* قسم عن Clipchamp */
+        .about-section {
+            background: white;
+        }
+
+        .about-section .container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .features {
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
+            font-size: 1.2rem;
+        }
+
+        .feature-text h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* نافذة الفيديو المنبثقة */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background-color: var(--primary-color);
+        }
+
+        .video-container {
+            position: relative;
+            padding-top: 56.25%;
+            background-color: black;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-details {
+            padding: 1.5rem;
+        }
+
+        .video-details h2 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            text-align: right;
+        }
+
+        .video-details p {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            text-align: right;
+        }
+
+        .video-stats {
+            display: flex;
+            gap: 20px;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+
+        .video-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .video-stats i {
+            color: var(--primary-color);
+        }
+
+        /* تأثيرات الحركة */
+        .animate-pop-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: popIn 0.8s ease forwards;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 992px) {
+            .hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .about-section .container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                margin: 15px 0;
+                font-size: 1.2rem;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                margin: 5px 0;
+                width: 80%;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">فيديوهات<span>Clipchamp</span></a>
+            <div class="nav-links">
+                <a href="#home" class="active">الرئيسية</a>
+                <a href="#videos">المعرض</a>
+                <a href="#about">عن البرنامج</a>
+                <a href="#learn">تعلم</a>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
+    <header id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-pop-in">إبداعات <span>Clipchamp</span> تأتي إلى الحياة</h1>
+                <p class="animate-pop-in">استكشف مجموعة من الفيديوهات المذهلة المصممة بواسطة برنامج Clipchamp</p>
+                <a href="#videos" class="btn btn-primary animate-pop-in">استكشف المعرض</a>
+            </div>
+            <div class="hero-image animate-pop-in">
+                <img src="imgs/intro.jpg" alt="واجهة Clipchamp" class="floating">
+            </div>
+        </div>
+        <div class="wave"></div>
+    </header>
+
+    <!-- معرض الفيديوهات -->
+    <section id="videos" class="video-section">
+        <div class="container">
+            <h2>معرض <span>الفيديوهات</span></h2>
+            <p>فيديوهات إبداعية تم إنشاؤها باستخدام Clipchamp</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="nature">الطبيعة</button>
+                <button class="filter-btn" data-filter="tech">التقنية</button>
+                <button class="filter-btn" data-filter="art">الفنون</button>
+            </div>
+            
+            <div class="video-grid">
+                <!-- سيتم إضافة الفيديوهات ديناميكيًا بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم عن البرنامج -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-image">
+                <img src="imgs/img.jpg" alt="واجهة البرنامج">
+            </div>
+            <div class="about-content">
+                <h2>عن <span>Clipchamp</span></h2>
+                <p>برنامج تحرير فيديو متكامل يعمل عبر المتصفح دون الحاجة إلى تثبيت برامج</p>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>تحرير فيديو متقدم</h3>
+                            <p>أدوات تحرير قوية وسهلة الاستخدام لإنشاء فيديوهات احترافية</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>مؤثرات وانتقالات</h3>
+                            <p>مكتبة غنية بالمؤثرات والانتقالات والمرشحات الاحترافية</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>تخزين سحابي</h3>
+                            <p>احفظ مشاريعك على السحابة وواصل العمل من أي جهاز</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section id="learn" class="learn-section" style="background-color: var(--light-color); padding: 80px 0;">
+    <div class="container">
+        <h2>تعلم <span>Clipchamp</span></h2>
+        <p>اكتشف كيف يمكنك إنشاء فيديوهات احترافية بسهولة باستخدام Clipchamp</p>
+        
+        <div class="learn-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+            <!-- بطاقة تعليمية 1 -->
+            <div class="learn-card" style="background: white; border-radius: 15px; padding: 30px; box-shadow: var(--shadow); transition: var(--transition);">
+                <div class="learn-icon" style="width: 70px; height: 70px; background: var(--gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-film"></i>
+                </div>
+                <h3 style="margin-bottom: 15px; color: var(--dark-color);">أساسيات التحرير</h3>
+                <p style="color: #666; line-height: 1.7; text-align: right;">تعلم كيفية قص، تقطيع، ودمج مقاطع الفيديو باحترافية باستخدام أدوات Clipchamp السهلة.</p>
+                <a href="https://youtu.be/lYRWhFey_Hw" style="display: inline-block; margin-top: 15px; color: var(--primary-color); font-weight: bold; text-decoration: none; transition: var(--transition);">المزيد <i class="fas fa-arrow-left" style="margin-right: 5px;"></i></a>
+            </div>
+            
+            <!-- بطاقة تعليمية 2 -->
+            <div class="learn-card" style="background: white; border-radius: 15px; padding: 30px; box-shadow: var(--shadow); transition: var(--transition);">
+                <div class="learn-icon" style="width: 70px; height: 70px; background: var(--gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h3 style="margin-bottom: 15px; color: var(--dark-color);">المؤثرات والانتقالات</h3>
+                <p style="color: #666; line-height: 1.7; text-align: right;">أضف لمسات احترافية على فيديوهاتك باستخدام مجموعة المؤثرات والانتقالات الجاهزة في Clipchamp.</p>
+                <a href="https://youtu.be/aRYf94TNzGc" style="display: inline-block; margin-top: 15px; color: var(--primary-color); font-weight: bold; text-decoration: none; transition: var(--transition);">المزيد <i class="fas fa-arrow-left" style="margin-right: 5px;"></i></a>
+            </div>
+            
+            <!-- بطاقة تعليمية 3 -->
+            <div class="learn-card" style="background: white; border-radius: 15px; padding: 30px; box-shadow: var(--shadow); transition: var(--transition);">
+                <div class="learn-icon" style="width: 70px; height: 70px; background: var(--gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3 style="margin-bottom: 15px; color: var(--dark-color);">الصوت والموسيقى</h3>
+                <p style="color: #666; line-height: 1.7; text-align: right;">تحكم كامل في الصوت، أضف موسيقى خلفية، وعدل مستويات الصوت بسهولة في مشاريعك.</p>
+                <a href="https://youtu.be/2_5vHK_kOxo" style="display: inline-block; margin-top: 15px; color: var(--primary-color); font-weight: bold; text-decoration: none; transition: var(--transition);">المزيد <i class="fas fa-arrow-left" style="margin-right: 5px;"></i></a>
+            </div>
+            
+            <!-- بطاقة تعليمية 4 -->
+            <div class="learn-card" style="background: white; border-radius: 15px; padding: 30px; box-shadow: var(--shadow); transition: var(--transition);">
+                <div class="learn-icon" style="width: 70px; height: 70px; background: var(--gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3 style="margin-bottom: 15px; color: var(--dark-color);">التخزين والمشاركة</h3>
+                <p style="color: #666; line-height: 1.7; text-align: right;">احفظ مشاريعك على السحابة وشاركها مع فريقك أو على منصات التواصل الاجتماعي بضغطة زر.</p>
+                <a href="https://youtu.be/ssWEH4uh3G0" style="display: inline-block; margin-top: 15px; color: var(--primary-color); font-weight: bold; text-decoration: none; transition: var(--transition);">المزيد <i class="fas fa-arrow-left" style="margin-right: 5px;"></i></a>
+            </div>
+    </div>
+</section>
+
+    <!-- نافذة الفيديو المنبثقة -->
+    <div class="video-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-container">
+                <video id="modal-video" controls>
+                    <source src="" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
+            <div class="video-details">
+                <h2 id="video-title">عنوان الفيديو</h2>
+                <p id="video-description">وصف الفيديو هنا...</p>
+                <div class="video-stats">
+                    <span><i class="fas fa-eye"></i> <span id="video-views">0</span> مشاهدة</span>
+                    <span><i class="fas fa-calendar-alt"></i> <span id="video-date">اليوم</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // بيانات الفيديوهات (يمكن استبدالها ببيانات حقيقية من قاعدة بيانات)
+            const videos = [
+                {
+                    id: 1,
+                    title: "تكنولوجيا التعليم بين الماهيه و الاهميه",
+                    description: "",
+                    thumbnail: "imgs/تكنولوجيا-التعليم.png",
+                    videoUrl: "imgs/تكنولوجيا-التعليم.mp4",
+                    tags: ["nature", "scenery"],
+                    category: "nature",
+                    views: 1245,
+                    date: "2023-05-15"
+                },
+                {
+                    id: 2,
+                    title: "الاطار العام لمهارات التعليم فى القرن ال21",
+                    description: "",
+                    thumbnail: "imgs/مهارات-التعلم.png",
+                    videoUrl: "imgs/video.mp4",
+                    tags: ["technology", "innovation"],
+                    category: "tech",
+                    views: 2873,
+                    date: "2023-06-22"
+                },
+                {
+                    id: 3,
+                    title: "التربيه كعملية",
+                    description: "",
+                    thumbnail: "imgs/التربيه.png",
+                    videoUrl: "imgs/التربيه-كعمليه.mp4",
+                    tags: ["art", "painting"],
+                    category: "art",
+                    views: 932,
+                    date: "2023-04-10"
+                },
+                {
+                    id: 4,
+                    title: "طرائق تعليم التكنولوجيا و المعلومات",
+                    description: "",
+                    thumbnail: "imgs/طرائق-تعلم.png",
+                    videoUrl: "imgs/طرائق-تعلم.mp4",
+                    tags: ["nature", "adventure"],
+                    category: "nature",
+                    views: 1567,
+                    date: "2023-07-05"
+                },
+                {
+                    id: 6,
+                    title: "هجرة الطيور",
+                    description: "",
+                    thumbnail: "imgs/هجرة-الطيور.png",
+                    videoUrl: "imgs/هجرة-الطيور.mp4",
+                    tags: ["art", "sculpture"],
+                    category: "art",
+                    views: 784,
+                    date: "2023-03-28"
+                },
+                {
+                    id: 8,
+                    title: "مفهوم التكنولوجيا",
+                    description: "",
+                    thumbnail: "imgs/مفهوم-التكنولوجيا.png",
+                    videoUrl: "imgs/مفهوم-تكنو.mp4",
+                    tags: ["art", "sculpture"],
+                    category: "art",
+                    views: 784,
+                    date: "2023-03-28"
+                }
+            ];
+
+            // عناصر DOM
+            const videoGrid = document.querySelector('.video-grid');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navbar = document.querySelector('.navbar');
+            const videoModal = document.querySelector('.video-modal');
+            const modalVideo = document.getElementById('modal-video');
+            const videoTitle = document.getElementById('video-title');
+            const videoDescription = document.getElementById('video-description');
+            const videoViews = document.getElementById('video-views');
+            const videoDate = document.getElementById('video-date');
+            const closeModal = document.querySelector('.close-modal');
+
+            // تحميل الفيديوهات في المعرض
+            function loadVideos(filter = 'all') {
+                videoGrid.innerHTML = '';
+                
+                const filteredVideos = filter === 'all' 
+                    ? videos 
+                    : videos.filter(video => video.category === filter);
+                
+                filteredVideos.forEach(video => {
+                    const videoItem = document.createElement('div');
+                    videoItem.className = 'video-item';
+                    videoItem.setAttribute('data-category', video.category);
+                    
+                    videoItem.innerHTML = `
+                        <div class="video-thumbnail">
+                            <img src="${video.thumbnail}" alt="${video.title}">
+                            <div class="play-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>${video.title}</h3>
+                            <p>${video.description}</p>
+                            <div class="video-tags">
+                                ${video.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                    
+                    videoItem.addEventListener('click', () => openVideoModal(video));
+                    videoGrid.appendChild(videoItem);
+                });
+            }
+
+            // فتح نافذة الفيديو المنبثقة
+            function openVideoModal(video) {
+                modalVideo.src = video.videoUrl;
+                videoTitle.textContent = video.title;
+                videoDescription.textContent = video.description;
+                videoViews.textContent = video.views.toLocaleString();
+                videoDate.textContent = formatDate(video.date);
+                videoModal.style.display = 'flex';
+                
+                // إيقاف الفيديو عند إغلاق النافذة
+                modalVideo.pause();
+            }
+
+            // تنسيق التاريخ
+            function formatDate(dateString) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const date = new Date(dateString);
+                return date.toLocaleDateString('ar-EG', options);
+            }
+
+            // إغلاق نافذة الفيديو المنبثقة
+            function closeVideoModal() {
+                videoModal.style.display = 'none';
+                modalVideo.src = '';
+            }
+
+            // تصفية الفيديوهات حسب الفئة
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    loadVideos(button.dataset.filter);
+                });
+            });
+
+            // القائمة المتنقلة للهواتف
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // إغلاق القائمة عند النقر على رابط
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // تغيير لون شريط التنقل عند التمرير
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // إغلاق النافذة المنبثقة عند النقر خارجها
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    closeVideoModal();
+                }
+            });
+
+            closeModal.addEventListener('click', closeVideoModal);
+
+            // إغلاق النافذة المنبثقة عند الضغط على زر ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeVideoModal();
+                }
+            });
+
+            // تحميل الفيديوهات الأولية
+            loadVideos();
+
+            // تأثيرات الحركة للعناصر عند التحميل
+            const animateElements = document.querySelectorAll('.animate-pop-in');
+            animateElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>

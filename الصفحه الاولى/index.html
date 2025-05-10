@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة ويب ديناميكية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    section {
+      padding: 4rem 2rem;
+    }
+
+    .landing {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #ffffff;
+      border-radius: 1rem;
+    }
+
+    .landing img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 1rem;
+      transition: transform 0.5s;
+    }
+
+    .landing img:hover {
+      transform: scale(1.05);
+    }
+
+    .landing-text {
+      max-width: 500px;
+    }
+
+    .landing-text h1 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      color: #0077b6;
+    }
+
+    .landing-text p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .slider {
+      overflow: hidden;
+      position: relative;
+      background-color: #e0f7fa;
+      padding: 2rem 0;
+      direction: ltr;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 2rem;
+      animation: scroll 30s linear infinite;
+      will-change: transform;
+    }
+
+    .slider-item {
+      text-align: center;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .slider-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .slider-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .slider-item p {
+      margin-top: 0.5rem;
+      color: #00796b;
+      font-weight: bold;
+    }
+
+    .video-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 2rem;
+      background-color: #ffffff;
+      border-radius: 1rem;
+    }
+
+    .video-section iframe {
+      width: 90%;
+      max-width: 800px;
+      height: 450px;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .info-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10rem;
+      margin-bottom: 3rem;
+      background-color: #ffffff;
+      border-radius: 4rem;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-section img {
+      max-width: 300px;
+      width: 100%;
+      margin-left: 6em;
+      border-radius: 1rem;
+      transition: transform 0.5s;
+    }
+
+    .info-section img:hover {
+      transform: scale(1.05);
+    }
+
+    .info-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #0288d1;
+      direction: rtl;
+    }
+
+    .info-content ul {
+      list-style: disc;
+      padding-right: 1.5rem;
+      direction: rtl;
+    }
+
+    .info-content li {
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+
+    #info-section-1 {
+      direction: ltr;
+    }
+
+    #info-section-2 img {
+      margin-right: 4em;
+    }
+
+    #info-section-3 {
+      direction: ltr;
+    }
+
+    #info-section-4 img {
+      margin-right: 4em;
+    }
+    
+    /* التعديلات الجديدة */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+      animation: modalopen 0.5s;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .modal-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+
+    .modal-header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .modal-body {
+      line-height: 1.8;
+      text-align: right;
+    }
+
+    .play-button {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.8rem 2rem;
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .play-button:hover {
+      background-color: #005f92;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    .hours-system {
+      background-color: #ffffff;
+      padding: 4rem 2rem;
+      border-radius: 1rem;
+      margin-top: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .hours-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .hours-header h2 {
+      font-size: 2.2rem;
+      color: #0077b6;
+      margin-bottom: 1rem;
+    }
+
+    .hours-header p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hours-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.8rem 1.5rem;
+      background: #f0f4f8;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: #555;
+    }
+
+    .tab-btn.active {
+      background: #0077b6;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,119,182,0.3);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .feature-card {
+      background: #f8fafc;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .steps-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: #f8fafc;
+    }
+
+    .step-number {
+      background: #0077b6;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-left: 1rem;
+      flex-shrink: 0;
+    }
+
+    .benefits-list {
+      list-style: none;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .benefits-list li {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: #f8fafc;
+      border-radius: 1rem;
+    }
+
+    .benefit-icon {
+      font-size: 1.5rem;
+      margin-left: 1rem;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @keyframes modalopen {
+      from {opacity: 0; transform: translateY(-50px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .landing, .info-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .slider-item img {
+        width: 70px;
+        height: 70px;
+      }
+
+      .info-section img {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .info-section {
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Landing Section -->
+  <section class="landing" data-aos="fade-up">
+    <img src="imgs/تكنولوجيا-التعليم.jpg" alt="صورة رئيسية">
+    <div class="landing-text">
+      <h1>مرحبا بك في قسم تكنولوجيا المعلومات</h1>
+      <p>كلية التربية قسم تكنولوجيا التعليم والمعلومات هو قسم يركز على دراسة وتطوير التكنولوجيا في مجال التعليم والمعلومات.</p>
+    </div>
+  </section>
+
+  <!-- Image Slider -->
+  <section class="slider" data-aos="fade-up">
+    <div class="slider-track" id="slider-track">
+        <div class="slider-item"><img src="imgs/امانى.jpg" alt=""><p>ا.د/أمانى عوض</p></div>
+        <div class="slider-item"><img src="imgs/نشوى .jpg" alt=""><p>ا.د/نشوى رفعت</p></div>
+        <div class="slider-item"><img src="imgs/ربيع.jpg" alt=""><p>ا.د/ربيع عبد العظيم</p></div>
+        <div class="slider-item"><img src="imgs/الشحات.jpg" alt=""><p>ا.د/الشحات عتمان</p></div>
+        <div class="slider-item"><img src="imgs/المرسى.jpg" alt=""><p>د/المرسى</p></div>
+        <div class="slider-item"><img src="imgs/امانى (2).jpg" alt=""><p>د/امانى سمير</p></div>
+        <div class="slider-item"><img src="imgs/حمدى.jpg" alt=""><p>د/حمدى سليمان</p></div>
+        <div class="slider-item"><img src="imgs/رامى.jpg" alt=""><p>د/رامى</p></div>
+        <div class="slider-item"><img src="imgs/زكريا.jpg" alt=""><p>د/زكريا سريال</p></div>
+        <div class="slider-item"><img src="imgs/شمه.jpg" alt=""><p>ا.د/محمد شمه</p></div>
+        <div class="slider-item"><img src="imgs/طاهر.jpg" alt=""><p>ا.د/طاهر فرحات</p></div>
+        <div class="slider-item"><img src="imgs/ناهد.jpg" alt=""><p>ا.م.د/ناهد فهمى</p></div>
+        <div class="slider-item"><img src="imgs/هبه.jpg" alt=""><p>د/هبه عوض</p></div>
+        <div class="slider-item"><img src="imgs/يسرى.jpg" alt=""><p>ا.د/يسرى ابو العينين</p></div>
+        <div class="slider-item"><img src="imgs/مروة .jpg" alt=""><p>د/مروة الصياد</p></div>
+        <div class="slider-item"><img src="imgs/محمد .jpg" alt=""><p>د/محمد كيوان</p></div>
+        <div class="slider-item"><img src="imgs/عمرو .jpg" alt=""><p>د/عمرو البسيونى</p></div>
+        <div class="slider-item"><img src="imgs/روان.jpg" alt=""><p>د/روان غازى</p></div>
+        <div class="slider-item"><img src="imgs/بشرى.jpg" alt=""><p>د/بشرى سليم</p></div>
+        <div class="slider-item"><img src="imgs/صفاء.jpg" alt=""><p>د/صفاء اللاوندى</p></div>
+        <div class="slider-item"><img src="imgs/سارة.jpg" alt=""><p>د/سارة الغباشى</p></div>
+        <div class="slider-item"><img src="imgs/ولاء .jpg" alt=""><p>د/ولاء عكاشة</p></div>
+        <div class="slider-item"><img src="imgs/رانيا.jpg" alt=""><p>د/رانيا البغدادى</p></div>
+        <div class="slider-item"><img src="imgs/غادة .jpg" alt=""><p>د/غادة المتولى</p></div>
+      </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section" data-aos="fade-up">
+    <iframe src="imgs/video.mp4" frameborder="0" allowfullscreen allow="autoplay" loading="lazy"></iframe>
+    <button id="playBtn" class="play-button">تشغيل الفيديو</button>
+  </section>
+
+  <!-- Repeated Info Section -->
+  <section class="info-section" data-aos="fade-left" id="info-section-1">
+    <img src="imgs/التخصصات.png" alt="صورة توضيحية">
+    <div class="info-content">
+      <h2>التخصصات</h2>
+      <ul>
+        <li>تصميم المواد التعليمية: وهو تخصص يركز على تصميم المواد التعليمية باستخدام التكنولوجيا.</li>
+        <li>تكنولوجيا التعليم: وهو تخصص يركز على دراسة تطبيقات التكنولوجيا في مجال التعليم.</li>
+        <li>نظم المعلومات التعليمية: وهو تخصص يركز على تصميم وتنفيذ نظم المعلومات التعليمية.</li>
+        <li>تكنولوجيا المعلومات: وهو تخصص يركز على دراسة تطبيقات التكنولوجيا في مجال المعلومات.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="info-section" data-aos="fade-right" id="info-section-2">
+    <img src="imgs/المجالات.png" alt="صورة توضيحية">
+    <div class="info-content">
+      <h2>المجالات</h2>
+      <ul>
+        <li>تصميم المواقع التعليمية: وهو مجال يركز على تصميم المواقع التعليمية باستخدام التكنولوجيا</li>
+        <li>تطوير البرمجيات التعليمية: وهو مجال يركز على تطوير البرمجيات التعليمية باستخدام التكنولوجيا</li>
+        <li>إدارة نظم المعلومات التعليمية: وهو مجال يركز على إدارة نظم المعلومات التعليمية</li>
+        <li>تدريس التكنولوجيا: وهو مجال يركز على تدريس التكنولوجيا في المدارس.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="info-section" data-aos="fade-left" id="info-section-3">
+    <img src="imgs/المهارات.png" alt="صورة توضيحية">
+    <div class="info-content">
+      <h2>المهارات</h2>
+      <ul>
+        <li>تصميم الجرافيك: وهي مهارة يركز على تصميم الجرافيك والمواد المرئية</li>
+        <li>برمجة الحاسوب: وهي مهارة يركز على تصميم وتنفيذ البرامج الحاسوبية</li>
+        <li>إدارة البيانات: وهي مهارة يركز على إدارة وتحليل البيانات</li>
+        <li>التدريس: وهي مهارة يركز على تدريس التكنولوجيا في المدارس</li>
+      </ul>
+    </div>
+  </section>
+  <section class="info-section" data-aos="fade-left" id="info-section-4">
+    <img src="imgs/الخريجون.png" alt="صورة توضيحية">
+    <div class="info-content">
+      <h2>الخريجون</h2>
+      <ul>
+        <li>تصميم المواد التعليمية: يمكنهم تصميم المواد التعليمية باستخدام التكنولوجيا.</li>
+        <li>تكنولوجيا التعليم: يمكنهم استخدام التكنولوجيا في التعليم.</li>
+        <li>نظم المعلومات التعليمية: يمكنهم تصميم وتنفيذ نظم المعلومات التعليمية.</li>
+        <li>برمجة الحاسوب: يمكنهم برمجة الحاسوب</li>
+        <li>تصميم الجرافيك: يمكنهم تصميم الجرافيك والمواد</li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- نظام الساعات المعتمدة -->
+  <section class="hours-system" data-aos="fade-up">
+    <div class="hours-header">
+      <h2>نظام الساعات المعتمدة</h2>
+      <p>نظام تعليمي متطور يوفر مرونة وتقييمًا دقيقًا لأداء الطلاب</p>
+    </div>
+    
+    <div class="hours-container">
+      <div class="hours-tabs">
+        <button class="tab-btn active" data-tab="features">المميزات</button>
+        <button class="tab-btn" data-tab="how-it-works">كيف يعمل</button>
+        <button class="tab-btn" data-tab="benefits">الفوائد</button>
+      </div>
+      
+      <div class="hours-content">
+        <div class="tab-content active" id="features">
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>مرونة</h3>
+            <p>يوفر نظام الساعات المعتمدة مرونة في اختيار المواد الدراسية وترتيبها حسب احتياجات الطالب.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>تقييم دقيق</h3>
+            <p>يوفر نظام الساعات المعتمدة تقييمًا دقيقًا لأداء الطالب بناءً على معايير واضحة.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>تحسين الجودة</h3>
+            <p>يساهم النظام في تحسين جودة التعليم من خلال توفير تقييم دقيق لأداء الطالب.</p>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="how-it-works">
+          <div class="steps-container">
+            <div class="step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3>تحديد الساعات المعتمدة</h3>
+                <p>يتم تحديد عدد الساعات المعتمدة لكل مادة دراسية بناءً على عدد الساعات الأسبوعية.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3>تقييم المواد</h3>
+                <p>يتم تقييم المواد الدراسية بناءً على أداء الطالب في الاختبارات والأنشطة.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3>حساب المعدل</h3>
+                <p>يتم حساب المعدل التراكمي للطالب بناءً على درجاته في جميع المواد الدراسية.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="benefits">
+          <ul class="benefits-list">
+            <li>
+              <span class="benefit-icon">⏱️</span>
+              <span class="benefit-text">توفير الوقت: يمكن للطلاب اختيار المواد التي تناسبهم وتوفير الوقت.</span>
+            </li>
+            <li>
+              <span class="benefit-icon">📈</span>
+              <span class="benefit-text">تحسين الأداء: يمكن للطلاب تحسين أدائهم الأكاديمي بالتركيز على المواد التي يحتاجونها.</span>
+            </li>
+            <li>
+              <span class="benefit-icon">🌟</span>
+              <span class="benefit-text">تطوير المهارات: يمكن للطلاب تطوير مهاراتهم الأكاديمية والشخصية.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- نافذة السيرة الذاتية -->
+  <div id="bioModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="modal-header">
+        <img id="modalImage" src="" alt="">
+        <h2 id="modalName"></h2>
+      </div>
+      <div class="modal-body" id="modalBio">
+        <!-- سيتم ملؤه بالجافاسكريبت -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    const track = document.getElementById('slider-track');
+    const items = Array.from(track.children);
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      track.appendChild(clone);
+    });
+
+    // نظام الساعات المعتمدة - تبديل التبويبات
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // إزالة النشاط من جميع الأزرار والمحتويات
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // إضافة النشاط للعنصر المحدد
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // نافذة السيرة الذاتية
+    const modal = document.getElementById('bioModal');
+    const closeBtn = document.querySelector('.close-btn');
+    const modalImage = document.getElementById('modalImage');
+    const modalName = document.getElementById('modalName');
+    const modalBio = document.getElementById('modalBio');
+    
+    // بيانات السير الذاتية (يمكن استبدالها ببيانات حقيقية)
+    const bios = {
+      "ا.د/أمانى عوض": "عميد كلية التربية بجامعة دمياط",
+      "ا.د/نشوى رفعت": "رئيس قسم تكنولوجيا التعليم و المعلومات",
+      "ا.د/ربيع عبد العظيم": "وكيل الكلية للدراسات العليا و البحوث",
+      "ا.د/الشحات عتمان": "",
+      "د/المرسى": "اد بقسم تكنولوجيا التعليم",
+      "د/امانى سمير": "مدرس بقسم تكنولوجيا التعليم",
+      "د/حمدى سليمان": "اد بقسم تكنولوجيا التعليم",
+      "د/رامى":"مدرس مساعد",
+      "د/زكريا سريال": "استاذ مساعد بقسم تكنولوجيا التعليم",
+      "ا.د/محمد شمه": "اد بقسم تكنولوجيا التعليم",
+      "ا.د/طاهر فرحات": "اد بقسم تكنولوجيا التعليم",
+      "ا.م.د/ناهد فهمى": "استاذ مساعد بقسم تكنولوجيا التعليم",
+      "د/هبه عوض": "مدرس بقسم تكنولوجيا التعليم",
+      "ا.د/يسرى ابو العينين": "اد بقسم تكنولوجيا التعليم",
+      "د/مرة الصياد": "مدرس بقسم تكنولوجيا التعليم",
+      "د/محمد كيوان": "مدرس بقسم تكنولوجيا التعليم",
+      "د/عمرو البسيونى": "مدرس بقسم تكنولوجيا التعليم",
+      "د/روان غازى": "مدرس بقسم تكنولوجيا التعليم",
+      "د/بشرى سليم": "مدرس بقسم تكنولوجيا التعليم",
+      "د/صفاء اللاوندى": "مدرس بقسم تكنولوجيا التعليم",
+      "د/سارة الغباشى": "مدرس مساعد",
+      "د/ولاء عكاشة": "مدرس مساعد",
+      "د/رانيا البغدادى": "مدرس مساعد",
+      "د/غادة المتولى": "مدرس مساعد"
+    };
+
+    // فتح النافذة عند النقر على صورة
+    document.querySelectorAll('.slider-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const name = item.querySelector('p').textContent;
+        
+        modalImage.src = img.src;
+        modalName.textContent = name;
+        modalBio.textContent = bios[name] || "السيرة الذاتية غير متوفرة حالياً.";
+        
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // إغلاق النافذة
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+
+    // إغلاق النافذة عند النقر خارجها
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // التحكم في تشغيل الفيديو
+    const playBtn = document.getElementById('playBtn');
+    const videoIframe = document.querySelector('iframe');
+    
+    playBtn.addEventListener('click', () => {
+      const videoUrl = videoIframe.src;
+      videoIframe.src = videoUrl + (videoUrl.includes('?') ? '&' : '?') + 'autoplay=1';
+      playBtn.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

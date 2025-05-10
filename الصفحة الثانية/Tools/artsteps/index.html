@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض Artsteps | متاحف ومعارض افتراضية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* المتغيرات والأساسيات */
+:root {
+    --primary-color: #6A35EE;
+    --secondary-color: #FF6B6B;
+    --accent-color: #FFD166;
+    --dark-color: #2D3047;
+    --light-color: #F8F9FA;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.section-title span {
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title span::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.section-subtitle {
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.btn i {
+    margin-left: 8px;
+}
+
+.btn-primary {
+    background: var(--gradient);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a2fd6, #ff5252);
+    transform: translateY(-3px);
+}
+
+/* شريط التنقل الفني */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    padding: 15px 0;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    margin-right: 25px;
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 700;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--dark-color);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+/* القسم الرئيسي */
+.hero {
+    background: var(--gradient);
+    color: white;
+    padding: 180px 0 100px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 50px;
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: white;
+    text-align: right;
+}
+
+.art-elements {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 200px;
+    height: 200px;
+}
+
+.element {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.frame {
+    top: 10%;
+    right: 10%;
+    color: var(--primary-color);
+}
+
+.sculpture {
+    top: 60%;
+    right: 15%;
+    color: var(--secondary-color);
+}
+
+.paint {
+    top: 30%;
+    right: -5%;
+    color: var(--accent-color);
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+.delay-1 {
+    animation-delay: 0.5s;
+}
+
+.delay-2 {
+    animation-delay: 1s;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+}
+
+.art-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.art-wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100px;
+}
+
+/* معرض الفيديوهات */
+.exhibitions-section {
+    background-color: var(--light-color);
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    margin: 0 10px 10px 0;
+    background: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.filter-btn.active {
+    background: var(--gradient);
+    color: white;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.video-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.video-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.video-card .video-container {
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.video-info {
+    padding: 20px;
+}
+
+.video-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.video-info p {
+    text-align: right;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.video-meta span {
+    display: flex;
+    align-items: center;
+}
+
+.video-meta i {
+    margin-left: 5px;
+}
+
+/* مميزات Artsteps */
+.features-section {
+    background: white;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.feature-card {
+    background: var(--light-color);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient);
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card:hover::before {
+    height: 10px;
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: white;
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.8rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.feature-card:hover .feature-icon {
+    background: var(--gradient);
+    color: white;
+    transform: rotate(15deg) scale(1.1);
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.feature-card p {
+    text-align: center;
+    color: #666;
+}
+
+/* تأثيرات الحركة */
+.animate-pop-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: popIn 0.8s ease forwards;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تصميم متجاوب */
+@media (max-width: 992px) {
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    
+    .art-elements {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 80px);
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        margin: 5px 0;
+        width: 80%;
+    }
+    
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-container {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل الفني -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">آرت<span>ستبس</span></a>
+            <div class="nav-links">
+                <a href="#home" class="active">الرئيسية</a>
+                <a href="#exhibitions">المعارض</a>
+                <a href="#features">المميزات</a>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
+    <header id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-pop-in">استكشف <span>عالم الفن</span> الافتراضي</h1> 
+                <p class="animate-pop-in">عروض متحفية غامرة تم إنشاؤها باستخدام منصة Artsteps</p>
+                <a href="#exhibitions" class="btn btn-primary animate-pop-in"><i class="fas fa-play"></i> استكشف الفيديوهات</a>
+                <div class="art-elements">
+                    <div class="element frame floating"><i class="fas fa-square"></i></div>
+                    <div class="element sculpture floating delay-1"><i class="fas fa-monument"></i></div>
+                    <div class="element paint floating delay-2"><i class="fas fa-paint-brush"></i></div>
+                </div>
+            </div>
+            <div class="hero-image animate-pop-in">
+                <div class="video-container">
+                    <video controls muted poster="/artsteps/poster.jpg">
+                        <source src="imgs/videoplayback.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+        <div class="art-wave">
+            <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="#f8f9fa" opacity=".25"/>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="#f8f9fa" opacity=".5"/>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#f8f9fa"/>
+            </svg>
+        </div>
+    </header>
+
+    <!-- معرض الفيديوهات -->
+    <section id="exhibitions" class="exhibitions-section">
+        <div class="container">
+            <h2 class="section-title">معرض <span>الفيديوهات</span></h2>
+            <p class="section-subtitle">جولة افتراضية في متاحف ومعارض Artsteps</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="museum">متاحف</button>
+                <button class="filter-btn" data-filter="gallery">معارض فنية</button>
+                <button class="filter-btn" data-filter="historical">مواقع تاريخية</button>
+            </div>
+            
+            <div class="videos-grid">
+                <!-- سيتم إضافة العناصر ديناميكيًا بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- مميزات Artsteps -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">لماذا <span>Artsteps؟</span></h2>
+            <p class="section-subtitle">اكتشف القوة الكاملة لأداة إنشاء المتاحف الافتراضية</p>
+            
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-vr-cardboard"></i>
+                    </div>
+                    <h3>تجربة غامرة</h3>
+                    <p>تصميم معارض ثلاثية الأبعاد بتجربة زيارة حقيقية</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-photo-video"></i>
+                    </div>
+                    <h3>دعم متعدد الوسائط</h3>
+                    <p>إضافة فيديوهات، صور، ونصوص شرح للقطع الفنية</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>مشاركة سهلة</h3>
+                    <p>إمكانية مشاركة المعارض عبر وسائل التواصل الاجتماعي</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-vector-square"></i>
+                    </div>
+                    <h3>تخطيط حر</h3>
+                    <p>تصميم مسارات زيارة مخصصة للمعرض الخاص بك</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>تعاون جماعي</h3>
+                    <p>إمكانية العمل على المشروع مع فريق متكامل</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>متجاوب مع الأجهزة</h3>
+                    <p>عرض المعارض على جميع أحجام الشاشات</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // بيانات الفيديوهات (يمكن استبدالها ببيانات حقيقية)
+    const videosData = [
+        {
+            id: 1,
+            title: "متحف افتراضى عن الديناصورات",
+            description: "جولة كاملة في المتحف تم إنشاؤها باستخدام Artsteps",
+            category: "museum",
+            views: "15.2K",
+            duration: "8:45",
+            videoUrl: "imgs/video1.mp4"
+        },
+        {
+            id: 2,
+            title: "متحف اطاليا",
+            description: "عرض لأبرز معالم و مدن اطاليا",
+            category: "gallery",
+            views: "9.7K",
+            duration: "6:30",
+            videoUrl: "imgs/متحف-اطاليا.mp4"
+        },
+        {
+            id: 3,
+            title: "متحف الفن الاسلامى",
+            description: "عرض لابرز اثار الفن الاسلامى",
+            category: "historical",
+            views: "12.4K",
+            duration: "10:15",
+            videoUrl: "imgs/المتحف-الاسلامى.mp4"
+        },
+        {
+            id: 4,
+            title: "متحف للمجموعة الشمسية",
+            description: "جولة تفاعلية في متحف العلوم لعرض المجموعة الشمسية",
+            category: "museum",
+            views: "7.8K",
+            duration: "9:20",
+            videoUrl: "imgs/المجموعه-الشمية.mp4"
+        },
+        {
+            id: 5,
+            title: "معرض لوحات زيتية",
+            description: "عرض لأجمل القطع الفنية من",
+            category: "gallery",
+            views: "11.3K",
+            duration: "7:45",
+            videoUrl: "imgs/معرض-لوحات.mp4"
+        },
+        {
+            id: 6,
+            title: "إعادة بناء المدينة القديمة",
+            description: "رؤية افتراضية لمدينة تاريخية كما كانت في العصور القديمة",
+            category: "historical",
+            views: "14.6K",
+            duration: "12:00",
+            videoUrl: ""
+        }
+    ];
+
+    // عناصر DOM
+    const videosGrid = document.querySelector('.videos-grid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
+
+    // تحميل الفيديوهات
+    function loadVideos(filter = 'all') {
+        videosGrid.innerHTML = '';
+        
+        const filteredVideos = filter === 'all' 
+            ? videosData 
+            : videosData.filter(video => video.category === filter);
+        
+        filteredVideos.forEach(video => {
+            const videoCard = document.createElement('div');
+            videoCard.className = 'video-card';
+            videoCard.setAttribute('data-category', video.category);
+            
+            videoCard.innerHTML = `
+                <div class="video-container">
+                    <video controls muted poster="/artsteps/poster-${video.id}.jpg">
+                        <source src="${video.videoUrl}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3>${video.title}</h3>
+                    <p>${video.description}</p>
+                    <div class="video-meta">
+                        <span><i class="fas fa-eye"></i> ${video.views}</span>
+                        <span><i class="fas fa-clock"></i> ${video.duration}</span>
+                    </div>
+                </div>
+            `;
+            
+            videosGrid.appendChild(videoCard);
+        });
+    }
+
+    // تصفية الفيديوهات
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            loadVideos(button.dataset.filter);
+        });
+    });
+
+    // القائمة المتنقلة للهواتف
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // إغلاق القائمة عند النقر على رابط
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // تغيير لون شريط التنقل عند التمرير
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // تحميل الفيديوهات الأولية
+    loadVideos();
+
+    // تأثيرات الحركة للعناصر عند التحميل
+    const animateElements = document.querySelectorAll('.animate-pop-in');
+    animateElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.2}s`;
+    });
+});
+    </script>
+</body>
+</html>

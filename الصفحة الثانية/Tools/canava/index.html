@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض أعمال كانفا | تصاميم وفيديوهات إبداعية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* المتغيرات والأساسيات */
+:root {
+    --primary-color: #673AB7;
+    --secondary-color: #65cade;
+    --accent-color: #FFE66D;
+    --dark-color: #292F36;
+    --light-color: #F7FFF7;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 span {
+    color: var(--primary-color);
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #555;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+}
+
+.btn-primary {
+    background: var(--gradient);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ff5252, #3bd6cf);
+}
+
+/* شريط التنقل */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    padding: 15px 0;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    margin-right: 25px;
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 700;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--dark-color);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+/* القسم الرئيسي */
+.hero {
+    background: var(--gradient);
+    color: white;
+    padding: 150px 0 100px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 50px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: white;
+    text-align: right;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23F7FFF7" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23F7FFF7" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23F7FFF7"/></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* معرض الأعمال */
+.gallery-section {
+    background-color: var(--light-color);
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    margin: 0 10px 10px 0;
+    background: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.filter-btn.active {
+    background: var(--gradient);
+    color: white;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.gallery-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item img, .gallery-item video {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item video {
+    background-color: #000;
+}
+
+.gallery-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.overlay a {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    transition: var(--transition);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay a:hover {
+    color: var(--accent-color);
+}
+
+/* قسم من نحن */
+.about-section {
+    background: white;
+}
+
+.about-section .container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 19em;
+    box-shadow: var(--shadow);
+}
+
+.about-content {
+    flex: 1;
+}
+
+.skills {
+    margin-top: 30px;
+}
+
+.skill {
+    margin-bottom: 25px;
+}
+
+.skill h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.progress-bar {
+    height: 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--gradient);
+    width: 0;
+    transition: width 1.5s ease;
+}
+
+/* تأثيرات الحركة */
+.animate-pop-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: popIn 0.8s ease forwards;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.rotate {
+    animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* تصميم متجاوب */
+@media (max-width: 992px) {
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    
+    .about-section .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 80px);
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        margin: 5px 0;
+        width: 80%;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">تصاميم<span>كانفا</span></a>
+            <div class="nav-links">
+                <a href="#home" class="active">الرئيسية</a>
+                <a href="#gallery">المعرض</a>
+                <a href="#about">من نحن</a>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
+    <header id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-pop-in">إبداعات <span>كانفا</span> تأتي إلى الحياة</h1>
+                <p class="animate-pop-in">استكشف مجموعة من التصاميم والفيديوهات المذهلة المصممة بواسطة كانفا</p>
+                <a href="#gallery" class="btn btn-primary animate-pop-in">استكشف المعرض</a>
+            </div>
+            <div class="hero-image animate-pop-in">
+                <img src="imgs/intro.webp" alt="تصميم كانفا" class="floating">
+            </div>
+        </div>
+        <div class="wave"></div>
+    </header>
+
+    <!-- معرض الأعمال -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2>معرض <span>الأعمال</span></h2>
+            <p>تصاميم وفيديوهات إبداعية تم إنشاؤها باستخدام كانفا</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="design">تصاميم</button>
+                <button class="filter-btn" data-filter="video">فيديوهات</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- سيتم إضافة العناصر ديناميكيًا بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم من نحن -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-image">
+                <img src="imgs/نبذة-تعريفية-عن-مصمم-جرافيك.jpg" alt="عن المصمم" class="rotate">
+            </div>
+            <div class="about-content">
+                <h2>من <span>نحن</span></h2>
+                <p>نحن فريق مبدع متخصص في إنشاء تصاميم وفيديوهات احترافية باستخدام منصة كانفا. نقدم حلولًا بصرية جذابة تلبي احتياجاتك التسويقية والإبداعية.</p>
+                <div class="skills">
+                    <div class="skill">
+                        <div class="skill-progress" data-width="95%">
+                            <h3>تصميم جرافيك</h3>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-progress" data-width="85%">
+                            <h3>تحرير الفيديو</h3>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-progress" data-width="90%">
+                            <h3>تصميم وسائل تواصل</h3>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // بيانات المعرض (يمكن استبدالها ببيانات حقيقية من قاعدة بيانات أو API)
+    const galleryItems = [
+        {
+            id: 1,
+            title: "",
+            category: "design",
+            type: "image",
+            src: "imgs/تصميم1.jpeg"
+        },
+        {
+            id: 2,
+            title: "",
+            category: "video",
+            type: "video",
+            src: "imgs/video1.mp4",
+            autoplay: false
+        },
+        {
+            id: 3,
+            title: "",
+            category: "social",
+            type: "image",
+            src: "imgs/صورة2.jpg"
+        },
+        {
+            id: 4,
+            title: "",
+            category: "design",
+            type: "image",
+            src: "imgs/صورة3.jpg"
+        },
+        {
+            id: 5,
+            title: "",
+            category: "video",
+            type: "video",
+            src: "imgs/video2.mp4",
+            autoplay: false
+        },
+        {
+            id: 6,
+            title: "",
+            category: "social",
+            type: "image",
+            src: "imgs/صورة4.jpg"
+        },
+        {
+            id: 7,
+            title: "",
+            category: "video",
+            type: "video",
+            src: "imgs/video3.mp4",
+            autoplay: false
+        }
+    ];
+
+    // عناصر DOM
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
+    const skillProgresses = document.querySelectorAll('.skill-progress');
+
+    // تحميل عناصر المعرض
+    function loadGalleryItems(filter = 'all') {
+        galleryGrid.innerHTML = '';
+        
+        const filteredItems = filter === 'all' 
+            ? galleryItems 
+            : galleryItems.filter(item => item.category === filter);
+        
+        filteredItems.forEach(item => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.setAttribute('data-category', item.category);
+            
+            let mediaElement;
+            if (item.type === 'image') {
+                mediaElement = document.createElement('img');
+                mediaElement.src = item.src;
+                mediaElement.alt = item.title;
+            } else if (item.type === 'video') {
+                mediaElement = document.createElement('video');
+                mediaElement.src = item.src;
+                mediaElement.controls = true;
+                mediaElement.muted = true;
+                mediaElement.autoplay = item.autoplay || false;
+                mediaElement.loop = false;
+                mediaElement.playsinline = true;
+            }
+            
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            
+            const title = document.createElement('h3');
+            title.textContent = item.title;
+            
+            const links = document.createElement('div');
+            links.className = 'links';
+            links.innerHTML = `
+                <a href="${item.src}" target="_blank" title="عرض"><i class="fas fa-eye"></i></a>
+                <a href="${item.src}" download title="تحميل"><i class="fas fa-download"></i></a>
+            `;
+            
+            overlay.appendChild(title);
+            overlay.appendChild(links);
+            
+            galleryItem.appendChild(mediaElement);
+            galleryItem.appendChild(overlay);
+            
+            galleryGrid.appendChild(galleryItem);
+        });
+    }
+
+    // تصفية العناصر
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            loadGalleryItems(button.dataset.filter);
+        });
+    });
+
+    // القائمة المتنقلة للهواتف
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // إغلاق القائمة عند النقر على رابط
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // تغيير لون شريط التنقل عند التمرير
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // إظهار شريط التقدم للمهارات عند التمرير إليها
+    function animateSkills() {
+        skillProgresses.forEach(progress => {
+            const progressBar = progress.querySelector('.progress');
+            const width = progress.dataset.width;
+            
+            if (isElementInViewport(progress)) {
+                progressBar.style.width = width;
+            }
+        });
+    }
+
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.bottom >= 0
+        );
+    }
+
+    window.addEventListener('scroll', animateSkills);
+
+    // تحميل العناصر الأولية
+    loadGalleryItems();
+
+    // تأثيرات الحركة للعناصر عند التحميل
+    const animateElements = document.querySelectorAll('.animate-pop-in');
+    animateElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.2}s`;
+    });
+});
+    </script>
+</body>
+</html>

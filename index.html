@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تكنولوجيا التعليم و المعلومات</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+      text-decoration: none;
+    }
+
+    body {
+      background: #f5f8ff;
+      color: #333;
+      scroll-behavior: smooth;
+      direction: rtl;
+    }
+
+    /* Landing Section */
+    .landing {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .landing video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Content Section */
+    .content-section {
+      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .header-icon {
+      font-size: 2.5rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    /* Team Section */
+    .team-section {
+      padding: 3rem 1rem;
+      background-color: #e3ebff;
+      text-align: center;
+    }
+
+    .team-section h2 {
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    .team-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 1.5rem;
+      padding: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: #c8d7ff transparent;
+    }
+
+    .team-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .team-scroll::-webkit-scrollbar-thumb {
+      background-color: #c8d7ff;
+      border-radius: 4px;
+    }
+
+    .team-member {
+      min-width: 10em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-member p {
+      margin-top: 0.5rem;
+      font-weight: 700;
+    }
+
+    /* Popups */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 250px;
+      max-width: 80%;
+      max-height: 80vh;
+      overflow-y: auto;
+      animation: slideDown 0.5s ease-in-out;
+    }
+
+    .member-popup-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .member-popup-content img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #e3ebff;
+    }
+
+    .member-popup-content h3 {
+      color: #333;
+      font-size: 1.5rem;
+    }
+
+    .member-popup-content p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .popup-content button, .close-btn {
+      padding: 1rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #e3ebff;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .popup-content button:hover, .close-btn:hover {
+      background-color: #c8d7ff;
+      transform: scale(1.05);
+    }
+
+    .close-btn {
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 2rem;
+      background-color: #bbccd9;
+      margin-top: 0;
+    }
+
+    .footer-logo img {
+      width: 5em;
+      height: auto;
+      border-radius: 3em;
+    }
+
+    .footer-links {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-end;
+    }
+
+    .footer-links a {
+      color: white
+    }
+
+    .footer-qr {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+
+    .footer-qr img {
+      width: 100px;
+      height: 100px;
+      background: white;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .footer-qr h3 {
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes fadeIn {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes slideDown {
+      0% {opacity: 0; transform: translateY(-20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .footer-qr {
+        align-items: center;
+      }
+      
+      .team-scroll {
+        gap: 1rem;
+      }
+      
+      .team-member img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="landing">
+    <video autoplay muted loop>
+      <source src="imgs/intro.mp4" type="video/mp4">
+      متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+  </section>
+
+  <section class="content-section">
+    <h1>إدارة مشاريع تكنولوجيا المعلومات</h1>
+    <div class="header-icon" onclick="togglePopup()">🎓</div>
+  </section>
+
+  <!-- New Team Section -->
+  <section class="team-section">
+    <h2>فريق العمل</h2>
+    <div class="team-scroll">
+      <div class="team-member" onclick="showMemberInfo('member1')">
+        <img src="imgs/manar.jpg" alt="عضو الفريق">
+        <p>منار عبد الله صابر</p>
+      </div>
+      <div class="team-member" onclick="showMemberInfo('member2')">
+        <img src="imgs/sara.jpg" alt="عضو الفريق">
+        <p>سارة طارق الشرقاوى</p>
+      </div>
+      <div class="team-member" onclick="showMemberInfo('member3')">
+        <img src="imgs/مصطفى.jpg" alt="عضو الفريق">
+        <p>مصطفى محمود عبد الله</p>
+      </div>
+      <div class="team-member" onclick="showMemberInfo('member4')">
+        <img src="imgs/نانسى.jpg" alt="عضو الفريق">
+        <p>نانسى محمد عبد الحق</p>
+      </div>
+      <div class="team-member" onclick="showMemberInfo('member5')">
+        <img src="imgs/ياسمين.png" alt="عضو الفريق">
+        <p>ياسمين شعبان عبد الله</p>
+      </div>
+      <div class="team-member" onclick="showMemberInfo('member6')">
+        <img src="imgs/احمد.jpg" alt="عضو الفريق">
+        <p>احمد محمد سلامه</p>
+      </div>
+      <div class="team-member" onclick="showMemberInfo('member6')">
+        <img src="imgs/جمال.png" alt="عضو الفريق">
+        <p>جمال عوض احمد</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Member Info Popup -->
+  <div class="popup" id="memberPopup">
+    <div class="popup-content">
+      <div class="member-popup-content" id="memberInfoContent">
+        <!-- Content will be filled by JavaScript -->
+      </div>
+      <button class="close-btn" onclick="closeMemberPopup()">إغلاق</button>
+    </div>
+  </div>
+
+  <!-- Original Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <a href="الصفحه الاولى/index.html"><button>تعريف قسم تكنولوجيا</button></a>
+      <a href="الصفحة الثانية/index.html"><button>تطبيقات قسم تكنولوجيا</button></a>
+      <a href="الصفحه الثالثه/index.html"><button>انتاج قسم تكنولوجيا</button></a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <img src="imgs/logo.jpg" alt="Logo">
+    </div>
+    <div class="footer-links">
+      <h3>محتويات الموقع</h3>
+      <a href="">تعريف قسم تكنولوجيا</a>
+      <a href="">تطبيقات قسم تكنولوجيا</a>
+      <a href="#">انتاج قسم تكنولوجيا</a>
+    </div>
+    <div class="footer-qr">
+      <h3>عرض تقديمى عن الموقع</h3>
+      <img src="imgs/كاركود.jpg" alt="QR Code">
+    </div>
+  </footer>
+
+  <script>
+    function togglePopup() {
+      const popup = document.getElementById("popup");
+      popup.style.display = popup.style.display === "flex" ? "none" : "flex";
+    }
+
+    // Close popup when clicking outside
+    document.addEventListener('click', function(event) {
+      const popup = document.getElementById('popup');
+      const memberPopup = document.getElementById('memberPopup');
+      const icon = document.querySelector('.header-icon');
+      const popupContent = document.querySelector('.popup-content');
+      const memberContent = document.querySelector('#memberPopup .popup-content');
+
+      if (popup.style.display === 'flex' && !popupContent.contains(event.target) && !icon.contains(event.target)) {
+        popup.style.display = 'none';
+      }
+      
+      if (memberPopup.style.display === 'flex' && !memberContent.contains(event.target) && 
+          !Array.from(document.querySelectorAll('.team-member')).some(el => el.contains(event.target))) {
+        memberPopup.style.display = 'none';
+      }
+    });
+
+    // Team member info
+    const teamMembers = {
+      member1: {
+        name: "منار عبد الله صابر",
+        position: "",
+        bio: "",
+        img: "imgs/manar.jpg"
+      },
+      member2: {
+        name: "سارة طارق الشرقاوى",
+        position: "",
+        img: "imgs/sara.jpg"
+      },
+      member3: {
+        name: "مصطفى محمود عبد الله",
+        position: "",
+        img: "imgs/مصطفى.jpg"
+      },
+      member4: {
+        name: "نانسى محمد عبد الحق",
+        position: "",
+        img: "imgs/نانسى.jpg"
+      },
+      member5: {
+        name: "ياسمين شعبان عبد الله",
+        position: "",
+        img: "imgs/ياسمين.png"
+      },
+      member6: {
+        name: "احمد محمد سلامه",
+        position: "",
+        img: "imgs/احمد.jpg"
+      },
+      member7: {
+        name: "جمال عوض احمد",
+        position: "",
+        img: "imgs/جمال.png"
+      }
+    };
+
+    function showMemberInfo(memberId) {
+      const member = teamMembers[memberId];
+      const content = document.getElementById('memberInfoContent');
+      const popup = document.getElementById('memberPopup');
+      
+      content.innerHTML = `
+        <img src="${member.img}" alt="${member.name}">
+        <h3>${member.name}</h3>
+        <p><strong>الوظيفة:</strong> ${member.position}</p>
+        <p>${member.bio}</p>
+      `;
+      
+      popup.style.display = 'flex';
+    }
+
+    function closeMemberPopup() {
+      document.getElementById('memberPopup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

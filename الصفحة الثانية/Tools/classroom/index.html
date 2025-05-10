@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إبداعات Google Classroom | معرض الفصول الافتراضية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* المتغيرات والأساسيات */
+:root {
+    --primary-color: #4285F4;
+    --secondary-color: #34A853;
+    --accent-color: #FBBC05;
+    --error-color: #EA4335;
+    --dark-color: #202124;
+    --light-color: #F8F9FA;
+    --gray-color: #5F6368;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.section-title span {
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title span::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.section-subtitle {
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--gray-color);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.btn i {
+    margin-left: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3367d6;
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: #f1f3f4;
+    transform: translateY(-3px);
+}
+
+/* شريط التنقل */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    padding: 15px 0;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.98);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--dark-color);
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    margin-right: 25px;
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 700;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--dark-color);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+/* القسم الرئيسي */
+.hero {
+    background: linear-gradient(135deg, #4285F4, #34A853);
+    color: white;
+    padding: 180px 0 100px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 50px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 span {
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: white;
+    text-align: right;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.hero-img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.classroom-elements {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 100%;
+    height: 100%;
+}
+
+.element {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow);
+    color: var(--primary-color);
+}
+
+.assignment {
+    top: 10%;
+    right: 10%;
+}
+
+.quiz {
+    top: 60%;
+    right: 15%;
+    color: var(--error-color);
+}
+
+.material {
+    top: 30%;
+    right: -5%;
+    color: var(--secondary-color);
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+.delay-1 {
+    animation-delay: 0.5s;
+}
+
+.delay-2 {
+    animation-delay: 1s;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.custom-shape-divider-bottom-1689086749 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1689086749 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100px;
+}
+
+.custom-shape-divider-bottom-1689086749 .shape-fill {
+    fill: #F8F9FA;
+}
+
+/* قسم الفصول */
+.classes-section {
+    background-color: var(--light-color);
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.class-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.class-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.class-header {
+    padding: 20px;
+    color: white;
+}
+
+.class-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.class-header p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.class-body {
+    padding: 20px;
+}
+
+.class-stats {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.class-stats li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.class-stats i {
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+    background: #f1f3f4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.btn-class {
+    display: block;
+    text-align: center;
+    background: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.btn-class:hover {
+    background: #3367d6;
+    transform: translateY(-3px);
+}
+
+/* مميزات المنصة */
+.features-section {
+    background: white;
+}
+
+.features-tabs {
+    margin-top: 50px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.tabs-header {
+    display: flex;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.tabs-content {
+    padding: 30px;
+}
+
+.tab-pane {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.tab-pane.active {
+    display: grid;
+}
+
+.feature-item {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.feature-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.feature-item p {
+    text-align: right;
+    color: var(--gray-color);
+}
+
+/* معرض الأعمال */
+.gallery-section {
+    background-color: var(--light-color);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-img {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.gallery-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover .gallery-img img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: var(--transition);
+    padding: 20px;
+    text-align: center;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.gallery-overlay p {
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+.btn-gallery {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.btn-gallery:hover {
+    background: #3367d6;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 992px) {
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .classroom-elements {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 80px);
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    .tabs-header {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .classes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-pane {
+        grid-template-columns: 1fr;
+    }
+}
+        /* إضافة أنماط جديدة للفيديوهات */
+        .gallery-video {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .gallery-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .video-play-btn:hover {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 3;
+        }
+
+        .gallery-video:hover .video-controls {
+            opacity: 1;
+        }
+
+        .video-controls button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: var(--transition);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-controls button:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .video-controls .progress-container {
+            flex-grow: 1;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 0 10px;
+            cursor: pointer;
+            position: relative;
+            border-radius: 3px;
+        }
+
+        .video-controls .progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            border-radius: 3px;
+        }
+
+        .video-controls .time {
+            color: white;
+            font-size: 12px;
+            min-width: 80px;
+            text-align: center;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .fullscreen-btn {
+            margin-left: 10px;
+        }
+
+        /* تعديلات للعرض على الأجهزة المحمولة */
+        @media (max-width: 768px) {
+            .video-controls .time {
+                display: none;
+            }
+            
+            .video-controls button {
+                margin: 0 2px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo"><i class="fab fa-google"></i> كلاس<span>روم</span></a>
+            <div class="nav-links">
+                <a href="#home" class="active">الرئيسية</a>
+                <a href="#classes">الفصول</a>
+                <a href="#features">المميزات</a>
+                <a href="#gallery">المعرض</a>
+            </div>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
+    <header id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-pop-in">تجربة <span>تعليمية</span> متكاملة</h1>
+                <p class="animate-pop-in">استكشف إمكانيات Google Classroom في إدارة الفصول الافتراضية وتنظيم العملية التعليمية</p>
+                <div class="hero-buttons">
+                    <a href="#classes" class="btn btn-primary animate-pop-in"><i class="fas fa-chalkboard-teacher"></i> تصفح الفصول</a>
+                    <a href="#features" class="btn btn-secondary animate-pop-in"><i class="fas fa-star"></i> المميزات</a>
+                </div>
+            </div>
+            <div class="hero-image animate-pop-in">
+                <img src="imgs/intro.jpg" alt="واجهة Google Classroom" class="hero-img">
+                <div class="classroom-elements">
+                    <div class="element assignment floating"><i class="fas fa-tasks"></i></div>
+                    <div class="element quiz floating delay-1"><i class="fas fa-question-circle"></i></div>
+                    <div class="element material floating delay-2"><i class="fas fa-book"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="custom-shape-divider-bottom-1689086749">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- قسم الفصول -->
+    <section id="classes" class="classes-section">
+        <div class="container">
+            <h2 class="section-title">فصول <span>Google Classroom</span></h2>
+            <p class="section-subtitle">تصفح الفصول الافتراضية التي تم إنشاؤها باستخدام المنصة</p>
+            
+            <div class="classes-grid">
+                <div class="class-card">
+                    <div class="class-header" style="background-color: #4285F4;">
+                        <h3>الفصول الافتراضيه</h3>
+                        <p>الاستاذ / بسمله خليفة</p>
+                    </div>
+                    <div class="class-body">
+                        <ul class="class-stats">
+                            <li><i class="fas fa-users"></i> 32 طالب</li>
+                            <li><i class="fas fa-tasks"></i> 15 واجب</li>
+                            <li><i class="fas fa-comments"></i> 24 منشور</li>
+                        </ul>
+                        <a href="https://classroom.google.com/c/NzI0Mzg2OTM1NjI5?cjc=gyugfsd" class="btn btn-class"><i class="fas fa-door-open"></i> دخول الفصل</a>
+                    </div>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-header" style="background-color: #EA4335;">
+                        <h3>المتاحف الافتراضية</h3>
+                        <p>الأستاذة/ اميرة احمد</p>
+                    </div>
+                    <div class="class-body">
+                        <ul class="class-stats">
+                            <li><i class="fas fa-users"></i> 28 طالب</li>
+                            <li><i class="fas fa-tasks"></i> 10 واجب</li>
+                            <li><i class="fas fa-comments"></i> 18 منشور</li>
+                        </ul>
+                        <a href="https://classroom.google.com/c/NzI0NTMxNjAxMjAx?cjc=rx4pak6" class="btn btn-class"><i class="fas fa-door-open"></i> دخول الفصل</a>
+                    </div>
+                </div>
+                
+                <div class="class-card">
+                    <div class="class-header" style="background-color: #FBBC05;">
+                        <h3>البيئات الافتراضيه</h3>
+                        <p>الأستاذ/ سارة تكالو</p>
+                    </div>
+                    <div class="class-body">
+                        <ul class="class-stats">
+                            <li><i class="fas fa-users"></i> 25 طالب</li>
+                            <li><i class="fas fa-tasks"></i> 8 واجب</li>
+                            <li><i class="fas fa-comments"></i> 12 منشور</li>
+                        </ul>
+                        <a href="https://classroom.google.com/c/NzI0NTIzNTExOTA4?cjc=xubrpkp" class="btn btn-class"><i class="fas fa-door-open"></i> دخول الفصل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مميزات المنصة -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">مميزات <span>Google Classroom</span></h2>
+            <p class="section-subtitle">اكتشف الأدوات القوية التي توفرها المنصة لإدارة العملية التعليمية</p>
+            
+            <div class="features-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="organize"><i class="fas fa-folder-open"></i> التنظيم</button>
+                    <button class="tab-btn" data-tab="communicate"><i class="fas fa-comments"></i> التواصل</button>
+                    <button class="tab-btn" data-tab="evaluate"><i class="fas fa-check-circle"></i> التقييم</button>
+                </div>
+                
+                <div class="tabs-content">
+                    <div class="tab-pane active" id="organize">
+                        <div class="feature-item">
+                            <i class="fas fa-tasks"></i>
+                            <h3>إدارة الواجبات</h3>
+                            <p>إنشاء وتوزيع وتصحيح الواجبات بسهولة وإمكانية تحديد مواعيد التسليم</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-folder"></i>
+                            <h3>تنظيم المواد</h3>
+                            <p>تصنيف المواد التعليمية حسب الموضوعات أو الوحدات الدراسية</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>الجدولة التلقائية</h3>
+                            <p>جدولة النشاطات والواجبات مسبقاً مع إشعارات تذكير للطلاب</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="communicate">
+                        <div class="feature-item">
+                            <i class="fas fa-comment-dots"></i>
+                            <h3>النقاشات الصفية</h3>
+                            <p>إنشاء مناقشات صفية تفاعلية بين المعلم والطلاب</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-bell"></i>
+                            <h3>الإشعارات الفورية</h3>
+                            <p>إرسال إشعارات فورية للطلاب حول الواجبات الجديدة أو التحديثات</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-envelope"></i>
+                            <h3>المراسلات الخاصة</h3>
+                            <p>إمكانية التواصل المباشر بين المعلم والطالب بشكل خاص</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="evaluate">
+                        <div class="feature-item">
+                            <i class="fas fa-check-double"></i>
+                            <h3>تصحيح الواجبات</h3>
+                            <p>إمكانية تصحيح الواجبات إلكترونياً مع إضافة ملاحظات صوتية أو نصية</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>تقارير الأداء</h3>
+                            <p>تتبع تقدم الطلاب وإصدار تقارير أداء مفصلة</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>التقييمات الشاملة</h3>
+                            <p>إنشاء اختبارات وتقييمات إلكترونية مع تصحيح تلقائي</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض الأعمال -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">معرض <span>أعمال الطلاب</span></h2>
+            <p class="section-subtitle">أبرز المشاريع والواجبات المقدمة عبر Google Classroom</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-video">
+                        <video poster="https://via.placeholder.com/400x300">
+                            <source src="imgs/video1.mp4" type="video/mp4">
+                            متصفحك لا يدعم تشغيل الفيديو
+                        </video>
+                        <div class="video-play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" title="تشغيل/إيقاف">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="mute-btn" title="كتم/إلغاء كتم">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <span class="time">00:00 / 00:00</span>
+                            <button class="fullscreen-btn" title="ملء الشاشة">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        <div class="gallery-overlay">
+                            <h3>البيئات الافتراضية</h3>
+                         </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-video">
+                        <video poster="https://via.placeholder.com/400x300">
+                            <source src="imgs/video2.mp4" type="video/mp4">
+                            متصفحك لا يدعم تشغيل الفيديو
+                        </video>
+                        <div class="video-play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" title="تشغيل/إيقاف">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="mute-btn" title="كتم/إلغاء كتم">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <span class="time">00:00 / 00:00</span>
+                            <button class="fullscreen-btn" title="ملء الشاشة">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        <div class="gallery-overlay">
+                            <h3>المتاحف الافتراضية</h3>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="gallery-item">
+                    <div class="gallery-video">
+                        <video poster="https://via.placeholder.com/400x300">
+                            <source src="imgs/video3.mp4" type="video/mp4">
+                            متصفحك لا يدعم تشغيل الفيديو
+                        </video>
+                        <div class="video-play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" title="تشغيل/إيقاف">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="mute-btn" title="كتم/إلغاء كتم">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <span class="time">00:00 / 00:00</span>
+                            <button class="fullscreen-btn" title="ملء الشاشة">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        <div class="gallery-overlay">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-video">
+                        <video poster="https://via.placeholder.com/400x300">
+                            <source src="/classroom/فيديو واتساب بتاريخ 1446-10-15 في 09.16.16_44892936.mp4" type="video/mp4">
+                            متصفحك لا يدعم تشغيل الفيديو
+                        </video>
+                        <div class="video-play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" title="تشغيل/إيقاف">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="mute-btn" title="كتم/إلغاء كتم">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <div class="progress-container">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <span class="time">00:00 / 00:00</span>
+                            <button class="fullscreen-btn" title="ملء الشاشة">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        <div class="gallery-overlay">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // عناصر DOM
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navbar = document.querySelector('.navbar');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    // القائمة المتنقلة للهواتف
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // إغلاق القائمة عند النقر على رابط
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // تغيير لون شريط التنقل عند التمرير
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // تبويبات المميزات
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.dataset.tab;
+            
+            // إزالة النشاط من جميع الأزرار
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            // إضافة النشاط للزر المحدد
+            btn.classList.add('active');
+            
+            // إخفاء جميع المحتويات
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            // إظهار المحتوى المحدد
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+
+    // تأثيرات الحركة للعناصر عند التحميل
+    const animateElements = document.querySelectorAll('.animate-pop-in');
+    animateElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.2}s`;
+    });
+            // إضافة التحكم بالفيديوهات
+            document.querySelectorAll('.gallery-video').forEach(videoContainer => {
+                const video = videoContainer.querySelector('video');
+                const playBtn = videoContainer.querySelector('.video-play-btn');
+                const playPauseBtn = videoContainer.querySelector('.play-pause-btn');
+                const muteBtn = videoContainer.querySelector('.mute-btn');
+                const progressBar = videoContainer.querySelector('.progress-bar');
+                const progressContainer = videoContainer.querySelector('.progress-container');
+                const timeDisplay = videoContainer.querySelector('.time');
+                const fullscreenBtn = videoContainer.querySelector('.fullscreen-btn');
+                const overlay = videoContainer.querySelector('.gallery-overlay');
+
+                // زر التشغيل الكبير
+                playBtn.addEventListener('click', function() {
+                    video.play();
+                    this.style.display = 'none';
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                });
+
+                // زر التشغيل/الإيقاف الصغير
+                playPauseBtn.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                        playBtn.style.display = 'none';
+                        this.innerHTML = '<i class="fas fa-pause"></i>';
+                    } else {
+                        video.pause();
+                        playBtn.style.display = 'flex';
+                        this.innerHTML = '<i class="fas fa-play"></i>';
+                    }
+                });
+
+                // زر كتم الصوت
+                muteBtn.addEventListener('click', function() {
+                    video.muted = !video.muted;
+                    this.innerHTML = video.muted 
+                        ? '<i class="fas fa-volume-mute"></i>' 
+                        : '<i class="fas fa-volume-up"></i>';
+                });
+
+                // تحديث شريط التقدم
+                video.addEventListener('timeupdate', function() {
+                    const progress = (video.currentTime / video.duration) * 100;
+                    progressBar.style.width = `${progress}%`;
+                    
+                    // تحديث الوقت
+                    const currentMinutes = Math.floor(video.currentTime / 60);
+                    const currentSeconds = Math.floor(video.currentTime % 60).toString().padStart(2, '0');
+                    const durationMinutes = Math.floor(video.duration / 60);
+                    const durationSeconds = Math.floor(video.duration % 60).toString().padStart(2, '0');
+                    
+                    timeDisplay.textContent = 
+                        `${currentMinutes}:${currentSeconds} / ${durationMinutes}:${durationSeconds}`;
+                });
+
+                // النقر على شريط التقدم
+                progressContainer.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const pos = (e.clientX - rect.left) / rect.width;
+                    video.currentTime = pos * video.duration;
+                });
+
+                // ملء الشاشة
+                fullscreenBtn.addEventListener('click', function() {
+                    if (!document.fullscreenElement) {
+                        videoContainer.requestFullscreen().catch(err => {
+                            alert(`خطأ في ملء الشاشة: ${err.message}`);
+                        });
+                    } else {
+                        document.exitFullscreen();
+                    }
+                });
+
+                // إخفاء الزر الكبير عند التشغيل
+                video.addEventListener('play', function() {
+                    playBtn.style.display = 'none';
+                });
+
+                // إظهار الزر الكبير عند التوقف
+                video.addEventListener('pause', function() {
+                    if (!videoContainer.classList.contains('fullscreen')) {
+                        playBtn.style.display = 'flex';
+                    }
+                });
+
+                // إعادة تعيين الفيديو عند الانتهاء
+                video.addEventListener('ended', function() {
+                    playBtn.style.display = 'flex';
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                });
+
+                // منع إظهار overlay عند النقر على عناصر التحكم
+                videoContainer.querySelector('.video-controls').addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+
+                // إخفاء overlay عند تشغيل الفيديو
+                video.addEventListener('play', function() {
+                    overlay.style.opacity = '0';
+                });
+
+                // إظهار overlay عند إيقاف الفيديو
+                video.addEventListener('pause', function() {
+                    overlay.style.opacity = '1';
+                });
+            });
+
+            // أحداث ملء الشاشة
+            document.addEventListener('fullscreenchange', function() {
+                document.querySelectorAll('.gallery-video').forEach(container => {
+                    if (document.fullscreenElement === container) {
+                        container.classList.add('fullscreen');
+                        container.querySelector('.video-play-btn').style.display = 'none';
+                        container.querySelector('.video-controls').style.opacity = '1';
+                    } else {
+                        container.classList.remove('fullscreen');
+                        if (container.querySelector('video').paused) {
+                            container.querySelector('.video-play-btn').style.display = 'flex';
+                        }
+                    }
+                });
+            });
+});
+    </script>
+</body>
+</html>

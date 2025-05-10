@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أدوات التصميم والبرمجة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&family=Almarai:wght@300;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --success-color: #4ad66d;
+            --warning-color: #f8961e;
+            --danger-color: #ef233c;
+            --font-primary: 'Tajawal', sans-serif;
+            --font-secondary: 'Almarai', sans-serif;
+        }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: #f5f7fa;
+    color: var(--dark-color);
+    line-height: 1.6;
+    direction: rtl;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-family: var(--font-secondary);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.search-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.search-filter input, .search-filter select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 250px;
+}
+
+.search-filter input:focus, .search-filter select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.tool-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tool-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.tool-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.tool-card:hover .tool-image img {
+    transform: scale(1.05);
+}
+
+.tool-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-content h3 {
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark-color);
+}
+
+.tool-content p {
+    color: #555;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.tool-category {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.tool-category.design {
+    background-color: #7209b7;
+}
+
+.tool-category.development {
+    background-color: var(--primary-color);
+}
+
+.tool-category.video {
+    background-color: var(--danger-color);
+}
+
+.tool-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    margin-top: auto;
+}
+
+.tool-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .tools-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .search-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-filter input, .search-filter select {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tool-card {
+        margin-bottom: 1.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>أدوات التصميم والبرمجة</h1>
+            <p>اكتشف أفضل الأدوات لعملك الإبداعي</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-filter">
+            <input type="text" id="search-input" placeholder="ابحث عن أداة...">
+            <select id="filter-select">
+                <option value="all">جميع الفئات</option>
+                <option value="design">التصميم</option>
+                <option value="development">التطوير</option>
+                <option value="video">الفيديو</option>
+            </select>
+        </div>
+
+        <div class="tools-grid" id="tools-container">
+            <!-- سيتم ملؤه بواسطة JavaScript -->
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // بيانات الأدوات
+    const tools = [
+        {
+            id: 1,
+            name: "Canva",
+            description: "منصة تصميم جرافيكي سهلة الاستخدام تمكنك من إنشاء تصاميم احترافية دون الحاجة إلى خبرة في التصميم. تتضمن قوالب جاهزة للشعارات، الملصقات، العروض التقديمية والمزيد.",
+            image: "imgs/canva.webp",
+            category: "design",
+            link: "Tools/canava/index.html"
+        },
+        {
+            id: 2,
+            name: "Storyline",
+            description: "أحد أقوى أدوات تأليف التعلم الإلكتروني التي تمكنك من إنشاء دورات تفاعلية وجذابة دون الحاجة إلى مهارات برمجية. يدعم التفاعلات المتقدمة والتقييمات.",
+            image: "imgs/storyline.avif",
+            category: "design",
+            link: "Tools/storyline/index.html"
+        },
+        {
+            id: 4,
+            name: "Microsoft Clipchamp",
+            description: "أداة تحرير الفيديو السحابية المدمجة مع ويندوز 11. تتيح لك قص، تعديل، وتحسين مقاطع الفيديو بسهولة مع تأثيرات ونصوص جاهزة.",
+            image: "imgs/clipchamp.png",
+            category: "video",
+            link: "Tools/clipchamp/index.html"
+        },
+        {
+            id: 5,
+            name: "AnimeMaker",
+            description: "هو تطبيق يقوم بإنشاء الرسوم المتحركة ومشاركتها ، مثل الكتاب الورقي. يمكن تحميل الرسوم المتحركة الخاصة بك على موقع الويب ، ونشرها في جميع أنحاء العالم. يمكنك التواصل مع مستخدم آخر من خلال التعليقات.",
+            image: "imgs/animemaker.jpg",
+            category: "design",
+            link: "Tools/animeker/index.html"
+        },
+        {
+            id: 6,
+            name: "classroom",
+            description: "هى بيئة تعليمية يتفاعل فيها الطلاب و المعلمون مع ماده الدرس عبر الانترنت مباشرة غالبا ما تنقل المعلومات من خلال الصوت و الفيديو مع العديد من المشاركين و المدرسين المتصلين بنفس الاداه او المنصة",
+            image: "imgs/classroom.webp",
+            category: "video",
+             link: "Tools/classroom/index.html"
+        },
+        {
+            id: 7,
+            name: "Artsteps",
+            description: "تعلم استخدام برنامج Artsteps لإنشاء متحف رقمي واستكشاف تقنيات الرسم الحديثة. انطلق في عالم الفن الرقمي",
+            image: "imgs/artsteps.jpg",
+            category: "design",
+            link: "Tools/artsteps/index.html"
+        },
+        {
+            id: 8,
+            name: "TinKerCad",
+            description: "يُقدم Tinkercad منصة قوية للأفراد الذين يتوقون لاستكشاف مجالات التصميم ثلاثي الأبعاد والإلكترونيات والترميز. تم تصميمه ليكون سهل الوصول إليه وسهل الاستخدام، مما يشجع المستخدمين على التعبير عن إبداعاتهم من خلال واجهته البديهية.",
+            image: "imgs/tinkercad.png",
+            category: "design",
+            link: "Tools/Tenkercad/index.html"
+        },
+        {
+            id: 8,
+            name: "Visual Studio",
+            description: "Visual Studio Code هي أداة ومجانية من مايكروسوفت، تستخدم على نطاق واسع من قبل المبرمجين ومطوري البرامج. تم تصميمه لتوفير بيئة تطوير شاملة وخفيفة الوزن وقابلة للتخصيص بدرجة كبيرة،Visual Studio Code يدعم لغات برمجة متعددة ويستهدف المبتدئين والمطورين المتقدمين. إمكانية توسيعه، إلى جانب توافقه مع أنظمة التشغيل بما في ذلك Windows، وLinux، مما يجعله خيارًا شائعًا لمشاريع التطوير مفتوحة المصدر والمؤسسات.",
+            image: "imgs/visual.png",
+            category: "development",
+            link: "Tools/visual/index.html"
+        }
+    ];
+
+    // عناصر DOM
+    const toolsContainer = document.getElementById('tools-container');
+    const searchInput = document.getElementById('search-input');
+    const filterSelect = document.getElementById('filter-select');
+
+    // عرض الأدوات
+    function displayTools(toolsToDisplay) {
+        toolsContainer.innerHTML = '';
+        
+        toolsToDisplay.forEach(tool => {
+            const toolCard = document.createElement('div');
+            toolCard.className = 'tool-card';
+            
+            let categoryClass = '';
+            let categoryText = '';
+            
+            switch(tool.category) {
+                case 'design':
+                    categoryClass = 'design';
+                    categoryText = 'تصميم';
+                    break;
+                case 'development':
+                    categoryClass = 'development';
+                    categoryText = 'تطوير';
+                    break;
+                case 'video':
+                    categoryClass = 'video';
+                    categoryText = 'فيديو';
+                    break;
+            }
+            
+            toolCard.innerHTML = `
+                <div class="tool-image">
+                    <img src="${tool.image}" alt="${tool.name}">
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category ${categoryClass}">${categoryText}</span>
+                    <h3>${tool.name}</h3>
+                    <p>${tool.description}</p>
+                    <a href="${tool.link}" class="tool-btn">المزيد من التفاصيل</a>
+                </div>
+            `;
+            
+            toolsContainer.appendChild(toolCard);
+        });
+    }
+
+    // فلترة الأدوات
+    function filterTools() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filterValue = filterSelect.value;
+        
+        const filteredTools = tools.filter(tool => {
+            const matchesSearch = tool.name.toLowerCase().includes(searchTerm) || 
+                                tool.description.toLowerCase().includes(searchTerm);
+            const matchesFilter = filterValue === 'all' || tool.category === filterValue;
+            
+            return matchesSearch && matchesFilter;
+        });
+        
+        displayTools(filteredTools);
+    }
+
+    // أحداث البحث والفلترة
+    searchInput.addEventListener('input', filterTools);
+    filterSelect.addEventListener('change', filterTools);
+
+    // عرض جميع الأدوات عند التحميل
+    displayTools(tools);
+
+    // تأثيرات عند التمرير
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            header.style.padding = '1rem 0';
+        } else {
+            header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+            header.style.padding = '2rem 0';
+        }
+    });
+});
+    </script>
+</body>
+</html>

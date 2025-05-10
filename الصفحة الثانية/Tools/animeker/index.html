@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض فيديوهات Animaker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* المتغيرات اللونية */
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #00cec9;
+            --accent-color: #fdcb6e;
+            --dark-color: #2d3436;
+            --light-color: #f7f7f7;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* إعادة الضبط الأساسية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* الترويسة */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 150px 0 100px;
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: rgb(104, 32, 140);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .header-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+
+        /* شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* معرض الفيديوهات */
+        .video-section {
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .section-title span {
+            color: var(--primary-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            padding-top: 56.25%;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .video-card:hover .play-icon {
+            opacity: 1;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .video-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .video-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+
+        /* قسم أنماط الرسوم المتحركة */
+        .animation-styles {
+            background-color: var(--light-color);
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .style-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .style-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .style-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .style-card:hover .style-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .style-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .style-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* نافذة الفيديو المنبثقة */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-video-container {
+            position: relative;
+            padding-top: 56.25%;
+        }
+
+        .modal-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-details {
+            padding: 20px;
+        }
+
+        .video-details h2 {
+            margin-bottom: 10px;
+        }
+
+        /* تأثيرات الحركة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* التجاوبية */
+        @media (max-width: 992px) {
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .styles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .header-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .styles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">أني<span>ماكر</span></a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">الرئيسية</a></li>
+                <li><a href="#videos">المعرض</a></li>
+                <li><a href="#styles">أنماط الرسوم</a></li>
+            </ul>
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- الهيدر -->
+    <header id="home">
+        <div class="container">
+            <div class="header-content animate" style="animation-delay: 0.2s">
+                <h1 class="header-title">إبداعات <span>Animaker</span></h1>
+                <p class="header-subtitle">استكشف مجموعة من الفيديوهات المذهلة المصممة باستخدام برنامج Animaker</p>
+                <a href="#videos" class="btn btn-primary animate" style="animation-delay: 0.4s">استكشف المعرض</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- معرض الفيديوهات -->
+    <section id="videos" class="video-section">
+        <div class="container">
+            <h2 class="section-title animate">معرض <span>الفيديوهات</span></h2>
+            <p class="section-subtitle animate">أعمال إبداعية تم إنشاؤها باستخدام Animaker</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="educational">تعليمية</button>
+                <button class="filter-btn" data-filter="promotional">إعلانية</button>
+                <button class="filter-btn" data-filter="story">قصصية</button>
+            </div>
+            
+            <div class="video-grid">
+                <!-- سيتم إضافة الفيديوهات ديناميكيًا -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم أنماط الرسوم المتحركة -->
+    <section id="styles" class="animation-styles">
+        <div class="container">
+            <h2 class="section-title animate">أنماط <span>الرسوم المتحركة</span></h2>
+            <p class="section-subtitle animate">اكتشف الأنماط المختلفة التي يمكنك إنشاؤها باستخدام Animaker</p>
+            
+            <div class="styles-grid">
+                <div class="style-card animate">
+                    <div class="style-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>الإنفوجرافيك المتحرك</h3>
+                    <p>تحويل البيانات والمعلومات إلى رسوم متحركة جذابة</p>
+                </div>
+                
+                <div class="style-card animate">
+                    <div class="style-icon">
+                        <i class="fas fa-chalkboard"></i>
+                    </div>
+                    <h3>السبورة البيضاء</h3>
+                    <p>رسوم متحركة تبدو كالرسم على سبورة بيضاء</p>
+                </div>
+                
+                <div class="style-card animate">
+                    <div class="style-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>الرسوم الكرتونية</h3>
+                    <p>إنشاء شخصيات كرتونية متحركة باحترافية</p>
+                </div>
+                
+                <div class="style-card animate">
+                    <div class="style-icon">
+                        <i class="fas fa-photo-video"></i>
+                    </div>
+                    <h3>الدمج الحقيقي</h3>
+                    <p>دمج الرسوم المتحركة مع المشاهد الحقيقية</p>
+                </div>
+                
+                <div class="style-card animate">
+                    <div class="style-icon">
+                        <i class="fas fa-font"></i>
+                    </div>
+                    <h3>الحركة النصية</h3>
+                    <p>إبراز النصوص بحركات إبداعية جذابة</p>
+                </div>
+                
+                <div class="style-card animate">
+                    <div class="style-icon">
+                        <i class="fas fa-blender-phone"></i>
+                    </div>
+                    <h3>الأنماط المختلطة</h3>
+                    <p>دمج عدة أنماط في فيديو واحد متكامل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نافذة الفيديو المنبثقة -->
+    <div class="video-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-video-container">
+                <video id="modal-video" controls>
+                    <source src="" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
+            <div class="video-details">
+                <h2 id="video-modal-title"></h2>
+                <p id="video-modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // بيانات الفيديوهات
+            const videos = [
+                {
+                    id: 1,
+                    title: "فيديو تعليمي عن الحيوانات",
+                    description: "فيديو كرتوني يشرح أنواع الحيوانات للأطفال",
+                    category: "educational",
+                    tags: ["تعليمي", "أطفال", "كرتون"],
+                    videoUrl: "imgs/vedio1.mp4",
+                    thumbnail: "imgs/background.png"
+                },
+                {
+                    id: 2,
+                    title: "قصه سيدنا موسى",
+                    description: "قصة سيدنا موسى مع فرعون بصورة كرتونية",
+                    category: "promotional",
+                    tags: ["دينى", "قصه", "كرتون"],
+                    videoUrl: "imgs/قصة-موسى.mp4",
+                    thumbnail: "imgs/background.png"
+                },
+                {
+                    id: 3,
+                    title: "قصه عن حسن الظن بالله",
+                    description: "قصه كرتونيه قصيرة عن حسن الظن بالله",
+                    category: "story",
+                    tags: ["ديني", "قصة", "كرتون"],
+                    videoUrl: "imgs/حسن-الظن.mp4",
+                    thumbnail: "imgs/background.png"
+                },
+                {
+                    id: 4,
+                    title: "الظواهر الكونية",
+                    description: "فيديو تعليمي عن الظواهر الكونية",
+                    category: "educational",
+                    tags: ["توعية", "تعليمى", "بيئى"],
+                    videoUrl: "imgs/video4.mp4",
+                    thumbnail: "imgs/background.png"
+                },
+                {
+                    id: 5,
+                    title: "الاسراء و المعراج",
+                    description: "فيديو كرتونى تعليمى عن ليله الاسراءو المعراج",
+                    category: "promotional",
+                    tags: ["دينى", "كرتونى", "تعليمى"],
+                    videoUrl: "imgs/video5.mp4",
+                    thumbnail: "imgs/background.png"
+                },
+                {
+                    id: 6,
+                    title: "مادة العلوم درس الماء",
+                    description: "سلسله تعليمية لمادة العلوم",
+                    category: "story",
+                    tags: ["تعليم", "مادة", "اطفال"],
+                    videoUrl: "imgs/video6.mp4",
+                    thumbnail: "imgs/background.png"
+                }
+            ];
+
+            // عناصر DOM
+            const videoGrid = document.querySelector('.video-grid');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const videoModal = document.querySelector('.video-modal');
+            const modalVideo = document.getElementById('modal-video');
+            const videoModalTitle = document.getElementById('video-modal-title');
+            const videoModalDescription = document.getElementById('video-modal-description');
+            const closeModal = document.querySelector('.close-modal');
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navbar = document.querySelector('.navbar');
+
+            // تحميل الفيديوهات
+            function loadVideos(filter = 'all') {
+                videoGrid.innerHTML = '';
+                
+                const filteredVideos = filter === 'all' 
+                    ? videos 
+                    : videos.filter(video => video.category === filter);
+                
+                filteredVideos.forEach(video => {
+                    const videoCard = document.createElement('div');
+                    videoCard.className = 'video-card animate';
+                    videoCard.style.animationDelay = `${Math.random() * 0.5}s`;
+                    videoCard.setAttribute('data-category', video.category);
+                    
+                    videoCard.innerHTML = `
+                        <div class="video-thumbnail">
+                            <img src="${video.thumbnail}" alt="${video.title}">
+                            <div class="play-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>${video.title}</h3>
+                            <p>${video.description}</p>
+                            <div class="video-tags">
+                                ${video.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                    
+                    videoCard.addEventListener('click', () => openVideoModal(video));
+                    videoGrid.appendChild(videoCard);
+                });
+            }
+
+            // فتح نافذة الفيديو المنبثقة
+            function openVideoModal(video) {
+                modalVideo.src = video.videoUrl;
+                videoModalTitle.textContent = video.title;
+                videoModalDescription.textContent = video.description;
+                videoModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            // إغلاق نافذة الفيديو المنبثقة
+            function closeVideoModal() {
+                videoModal.style.display = 'none';
+                modalVideo.pause();
+                document.body.style.overflow = 'auto';
+            }
+
+            // تصفية الفيديوهات
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    loadVideos(button.dataset.filter);
+                });
+            });
+
+            // القائمة المتنقلة
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // إغلاق القائمة عند النقر على رابط
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // تغيير لون شريط التنقل عند التمرير
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // إغلاق النافذة المنبثقة عند النقر خارجها
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    closeVideoModal();
+                }
+            });
+
+            closeModal.addEventListener('click', closeVideoModal);
+
+            // تحميل الفيديوهات الأولية
+            loadVideos();
+        });
+    </script>
+</body>
+</html>
